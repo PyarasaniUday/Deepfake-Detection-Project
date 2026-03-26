@@ -1,6 +1,6 @@
 # Import required libraries
 
-import os          # Used for file and folder operations (paths, directories)
+import os         
 import random      # Used to shuffle images randomly before splitting
 import shutil      # Used to copy files from one folder to another
 

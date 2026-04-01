@@ -1,5 +1,7 @@
-from tensorflow.keras.models import load_model #type:ignore
-from tensorflow.keras.preprocessing.image import ImageDataGenerator #type:ignore
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
 
 test_dir = "dataset/test"
 
@@ -9,11 +11,22 @@ test_data = datagen.flow_from_directory(
     test_dir,
     target_size=(224,224),
     batch_size=32,
-    class_mode='binary'
+    class_mode='binary',
+    shuffle=False
 )
 
-model = load_model("cnn_model.h5")
+# 🔥 Load ViT (main model)
+model = load_model("models/vit_model.h5")
 
 loss, acc = model.evaluate(test_data)
+print(f"\nAccuracy: {acc*100:.2f}%")
 
-print(f"Accuracy: {acc*100:.2f}%")
+# Predictions
+preds = model.predict(test_data)
+y_pred = (preds > 0.5).astype(int)
+
+print("\nConfusion Matrix:")
+print(confusion_matrix(test_data.classes, y_pred))
+
+print("\nClassification Report:")
+print(classification_report(test_data.classes, y_pred))

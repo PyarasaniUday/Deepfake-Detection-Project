@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile
+from models.predict import predict_image
 import shutil
 from predict import predict_image #type:ignore
 

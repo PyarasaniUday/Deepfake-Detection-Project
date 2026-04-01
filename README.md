@@ -60,3 +60,51 @@ We used the **Celeb-DF (v2) dataset**, which contains real and deepfake videos o
 - Git & GitHub
 
 ---
+Structured Folder 
+Deepfake-Detection-Project/
+│
+├── dataset/                     # Final dataset (train/test/val)
+│   ├── train/
+│   │   ├── Fake/
+│   │   └── Real/
+│   ├── val/
+│   │   ├── Fake/
+│   │   └── Real/
+│   └── test/
+│       ├── Fake/
+│       └── Real/
+│
+├── data_preprocessing/          # All preprocessing scripts
+│   ├── preprocess_faces.py
+│   ├── split_dataset.py
+│   └── utils.py
+│
+├── models/                      # Model related files
+│   ├── cnn_model.py
+│   ├── vit_model.py
+│   ├── train.py
+│   ├── evaluate.py
+│   └── saved_models/
+│       └── model.h5
+│
+├── backend/                     # FastAPI backend
+│   ├── app.py
+│   ├── model_loader.py
+│   └── utils.py
+│
+├── frontend/                    # Web UI
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── notebooks/                   # Optional (for experiments)
+│   └── training.ipynb
+│
+├── outputs/                     # Results
+│   ├── graphs/
+│   ├── confusion_matrix/
+│   └── predictions/
+│
+├── requirements.txt            # All dependencies
+├── README.md                   # Project explanation
+└── .gitignore

@@ -1,4 +1,3 @@
-#preprocess 
 import cv2
 import os
 from mtcnn import MTCNN
@@ -73,28 +72,40 @@ def process_video(video_path, output_dir, video_filename):
 
 
 def main():
+
     os.makedirs(os.path.join(OUTPUT_ROOT, "Real"), exist_ok=True)
     os.makedirs(os.path.join(OUTPUT_ROOT, "Fake"), exist_ok=True)
 
+    MAX_VIDEOS = 1000
+
     for folder_name, label in CATEGORIES.items():
+
         folder_path = os.path.join(DATASET_ROOT, folder_name)
+
         output_dir = os.path.join(OUTPUT_ROOT, label)
 
         video_files = [f for f in os.listdir(folder_path) if f.endswith(".mp4")]
 
+        # Limit number of processed videos
+        video_files = video_files[:MAX_VIDEOS]
+
         print(f"\nProcessing {len(video_files)} videos from {folder_name}")
 
+        all_files = os.listdir(output_dir)   # 🔥 only once
+
         for video in tqdm(video_files):
-            video_path = os.path.join(folder_path, video)
+
             video_name = os.path.splitext(video)[0]
 
+            # check using cached list
+            if any(video_name in f for f in all_files):
+                continue
+
+            video_path = os.path.join(folder_path, video)
+
             process_video(video_path, output_dir, video_name)
-
     print("\nPreprocessing complete.")
-
 
 
 if __name__ == "__main__":
     main()
-
- 

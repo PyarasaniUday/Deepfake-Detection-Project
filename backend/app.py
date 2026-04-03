@@ -1,9 +1,23 @@
+import sys
+import os
 from fastapi import FastAPI, UploadFile
-from models.predict import predict_image
 import shutil
-from predict import predict_image #type:ignore
+
+# 🔥 Fix path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from models.predict import predict_image
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/predict")
 async def predict(file: UploadFile):
@@ -14,4 +28,4 @@ async def predict(file: UploadFile):
 
     result = predict_image(file_path)
 
-    return {"prediction": result}
+    return result

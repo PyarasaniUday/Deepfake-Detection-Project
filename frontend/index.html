@@ -1,16 +1,21 @@
 <!-- Hello-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Deepfake Detection using Vision Transformer — upload a face image to detect if it's real or fake." />
+  <meta name="description"
+    content="Deepfake Detection using Vision Transformer — upload a face image to detect if it's real or fake." />
   <title>DeepGuard — Deepfake Detection</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- ─────────────────────────────────
@@ -41,7 +46,7 @@
     <!-- Hero -->
     <section class="hero" aria-labelledby="hero-title">
       <h1 id="hero-title" class="hero-title">
-        Detect <span class="gradient-text">Deepfakes</span><br/>Instantly
+        Detect <span class="gradient-text">Deepfakes</span><br />Instantly
       </h1>
       <p class="hero-subtitle">
         Upload a face image and our Vision Transformer model will tell you
@@ -57,25 +62,15 @@
         <h2 class="card-title">Upload Image</h2>
 
         <!-- Drop zone -->
-        <div
-          id="drop-zone"
-          class="drop-zone"
-          role="button"
-          tabindex="0"
-          aria-label="Drop an image here or click to browse"
-        >
+        <div id="drop-zone" class="drop-zone" role="button" tabindex="0"
+          aria-label="Drop an image here or click to browse">
           <div class="drop-icon" id="drop-icon" aria-hidden="true">📁</div>
           <p class="drop-text" id="drop-text">
-            Drag &amp; drop a face image here<br/>
+            Drag &amp; drop a face image here<br />
             <span class="drop-sub">or click to browse</span>
           </p>
-          <input
-            type="file"
-            id="file-input"
-            accept="image/jpeg,image/png,image/webp"
-            class="hidden-input"
-            aria-label="Choose image file"
-          />
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" class="hidden-input"
+            aria-label="Choose image file" />
         </div>
 
         <!-- Image preview -->
@@ -106,6 +101,11 @@
           <div id="result-badge" class="result-badge"></div>
           <h3 id="result-label" class="result-label"></h3>
           <p class="result-desc" id="result-desc"></p>
+
+          <div id="reason-block" class="reason-block hidden">
+            <div class="reason-title">Explanation</div>
+            <div id="result-reason" class="reason-text"></div>
+          </div>
 
           <div class="confidence-section">
             <div class="confidence-label-row">
@@ -157,6 +157,8 @@
     <p>DeepGuard &copy; 2025 &mdash; Deepfake Detection using Vision Transformer (ViT)</p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
